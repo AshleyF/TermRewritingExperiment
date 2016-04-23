@@ -1,44 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Brief
 {
     class Program
     {
-        static void SimpleTest(Machine machine)
+        static void Test(string name, string source)
         {
-            Console.WriteLine("Simple Test");
+            Console.WriteLine(name);
 
-            var code = new Code(machine, "+ 2 * 3 4");
+            var machine = new Machine();
+
+            var code = new Code(machine, source);
             Console.WriteLine($"Program: {code}");
 
             var res = machine.Exec(code);
-            Console.WriteLine($"Result (TOS): {res.Peek()}");
+            Console.Write($"Result: ");
+            foreach (var v in res) Console.Write($"{v} ");
+            Console.WriteLine();
 
             var tree = Node.Tree(code.Words);
             Console.WriteLine($"Tree:\n{tree}");
-        }
 
-        static void PartialExpression(Machine machine)
-        {
-            Console.WriteLine("Partial Expression");
-
-            var code = new Code(machine, "+ *");
-            Console.WriteLine($"Program: {code}");
-
-            var tree = Node.Tree(code.Words);
-            Console.WriteLine($"Tree:\n{tree}");
         }
 
         static void Main(string[] args)
         {
-            var machine = new Machine();
-
-            SimpleTest(machine);
-            PartialExpression(machine);
+            Test("Simple Test", "+ 2 * 3 4");
+            Test("Partial Expression", "+ *");
 
             Console.ReadLine();
         }

@@ -46,6 +46,7 @@
     <Compile Include="Code.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="Primitive.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Word.cs" />
   </ItemGroup>

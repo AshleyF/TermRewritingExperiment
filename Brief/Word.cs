@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Brief
 {
@@ -39,5 +36,18 @@ namespace Brief
         public WordKind Kind { get; private set; }
         public int Arity { get; private set; }
         public int Returns { get; private set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    public class Param : Word // TODO: rethink
+    {
+        public Param(string name)
+            : base(name, _ => _, WordKind.Param, 0, 0)
+        {
+        }
     }
 }
