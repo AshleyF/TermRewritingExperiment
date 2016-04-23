@@ -18,7 +18,7 @@ namespace Brief
             var res = machine.Exec(code);
             Console.WriteLine($"Result (TOS): {res.Peek()}");
 
-            var tree = code.Tree;
+            var tree = Node.Tree(code.Words);
             Console.WriteLine($"Tree:\n{tree}");
         }
 
@@ -29,7 +29,7 @@ namespace Brief
             var code = new Code(machine, "+ *");
             Console.WriteLine($"Program: {code}");
 
-            var tree = code.Tree;
+            var tree = Node.Tree(code.Words);
             Console.WriteLine($"Tree:\n{tree}");
         }
 
