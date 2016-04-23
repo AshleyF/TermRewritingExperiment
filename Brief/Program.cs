@@ -15,12 +15,11 @@ namespace Brief
 
             var res = machine.Exec(code);
             Console.Write($"Result: ");
-            foreach (var v in res) Console.Write($"{v} ");
+            foreach (var v in res) Console.Write("{0} ", v); // ($"{v} "); // invalid IL error in Mono?!
             Console.WriteLine();
 
             var tree = Node.Tree(code.Words);
             Console.WriteLine($"Tree:\n{tree}");
-
         }
 
         static void Main(string[] args)

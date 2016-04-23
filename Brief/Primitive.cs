@@ -11,7 +11,7 @@ namespace Brief
             return new Param("x"); // TODO
         }
 
-        public static IWord Word(string name, Func<dynamic, dynamic, dynamic> fn)
+        public static IWord Word21(string name, Func<dynamic, dynamic, dynamic> fn)
         {
             Word w = null;
             Func<Stack<dynamic>, Stack<dynamic>> f = s =>
@@ -32,7 +32,7 @@ namespace Brief
             return w;
         }
 
-        public static IWord Word(string name, Func<dynamic, dynamic, Tuple<dynamic, dynamic>> fn)
+        public static IWord Word22(string name, Func<dynamic, dynamic, Tuple<dynamic, dynamic>> fn)
         {
             Func<Stack<dynamic>, Stack<dynamic>> f = s =>
             {
@@ -54,11 +54,11 @@ namespace Brief
         public static Dictionary<string, IWord> Dictionary()
         {
             var dict = new Dictionary<string, IWord>();
-            Add(Word("+", (a, b) => a + b), dict);
-            Add(Word("-", (a, b) => a - b), dict);
-            Add(Word("*", (a, b) => a * b), dict);
-            Add(Word("/", (a, b) => a / b), dict);
-            Add(Word("swap", (a, b) => new Tuple<dynamic, dynamic>(b, a)), dict);
+            Add(Word21("+", (a, b) => a + b), dict);
+            Add(Word21("-", (a, b) => a - b), dict);
+            Add(Word21("*", (a, b) => a * b), dict);
+            Add(Word21("/", (a, b) => a / b), dict);
+            Add(Word22("swap", (a, b) => new Tuple<dynamic, dynamic>(b, a)), dict);
             return dict;
         }
     }
