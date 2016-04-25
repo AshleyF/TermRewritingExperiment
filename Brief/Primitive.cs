@@ -5,10 +5,13 @@ namespace Brief
 {
     static class Primitive
     {
+        public static int Params = 0;
+
         private static dynamic Pop(Stack<dynamic> stack)
         {
             if (stack.Count > 0) return stack.Pop();
-            return new Param("x"); // TODO
+            var n = "xyzwvutsrqponmlkjihgfedcba"[Params++];
+            return new Param(n.ToString()); // TODO
         }
 
         public static IWord Word21(string name, Func<dynamic, dynamic, dynamic> fn)
@@ -46,6 +49,19 @@ namespace Brief
             return new Word(name, f, WordKind.Primitive, 2, 2);
         }
 
+        public static IWord Word12(string name, Func<dynamic, Tuple<dynamic, dynamic>> fn)
+        {
+            Func<Stack<dynamic>, Stack<dynamic>> f = s =>
+            {
+                var a = Pop(s);
+                var t = fn(a);
+                s.Push(t.Item1);
+                s.Push(t.Item2);
+                return s;
+            };
+            return new Word(name, f, WordKind.Primitive, 1, 2);
+        }
+
         private static void Add(IWord word, Dictionary<string, IWord> dict)
         {
             dict.Add(word.Name, word);
@@ -59,6 +75,7 @@ namespace Brief
             Add(Word21("*", (a, b) => a * b), dict);
             Add(Word21("/", (a, b) => a / b), dict);
             Add(Word22("swap", (a, b) => new Tuple<dynamic, dynamic>(b, a)), dict);
+            Add(Word12("dup", (a) => new Tuple<dynamic, dynamic>(a, a)), dict);
             return dict;
         }
     }
